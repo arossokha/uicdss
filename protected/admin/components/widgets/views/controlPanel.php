@@ -23,7 +23,7 @@
 					/**
 					 * @todo : not use this
 					 */
-					if ( $item['children'] ) $this->render('panelChild', array('categories' => $item['children']), true);
+					if ( isset($item['children']) ) $this->render('panelChild', array('categories' => $item['children']), true);
 					?>
 				</li>
 				<?php
