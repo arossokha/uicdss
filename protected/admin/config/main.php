@@ -93,13 +93,13 @@ return array(
 					'importPath' => 'application.models.*',
 					'model' => 'Faq',
 				),
-				array(
-					'name' => 'Города',
-					'path' => 'city',
-					'class' => 'ModelManagerLimiterWidget',
-					'importPath' => 'application.models.*',
-					'model' => 'City',
-				),
+				// array(
+				// 	'name' => 'Города',
+				// 	'path' => 'city',
+				// 	'class' => 'ModelManagerLimiterWidget',
+				// 	'importPath' => 'application.models.*',
+				// 	'model' => 'City',
+				// ),
 				
 								array(
 									'name' => 'Администраторы',
