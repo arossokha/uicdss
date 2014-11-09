@@ -1,4 +1,4 @@
-CREATE DATABASE template COLLATE utf8_general_ci;
-use template;
-CREATE USER 'template'@'localhost' IDENTIFIED BY  'template';
-GRANT ALL PRIVILEGES ON  `template` . * TO  'template'@'localhost';
+CREATE DATABASE uicdss COLLATE utf8_general_ci;
+use uicdss;
+CREATE USER 'uicdss'@'localhost' IDENTIFIED BY  'uicdss';
+GRANT ALL PRIVILEGES ON  `uicdss` . * TO  'uicdss'@'localhost';

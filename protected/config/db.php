@@ -1,9 +1,9 @@
 <?php
 
 return array(
-	'connectionString' => 'mysql:host=localhost;dbname=template',
+	'connectionString' => 'mysql:host=localhost;dbname=uicdss',
 	'emulatePrepare' => true,
-	'username' => 'template',
-	'password' => 'template',
+	'username' => 'uicdss',
+	'password' => 'uicdss',
 	'charset' => 'utf8',
 );
