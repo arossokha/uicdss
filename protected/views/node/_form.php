@@ -254,6 +254,15 @@
 		}
 		return true;
 	});
+
+	$('.inputParamSelect').live('change',function(e){
+		if(parseInt($(this).val()) > 0) {
+			$(this).parent().find('.row').children('input,select,button,textarea').attr('disabled','disabled');
+		} else {
+			$(this).parent().find('.row').children('input,select,button,textarea').removeAttr('disabled');
+		}
+	});
+
 	$('.addTerm').live('click',function(e) {
 		var termForm = $(this).parents('form').find('.newTermForm');
 		$(termForm).show();
@@ -262,7 +271,6 @@
 
 	$('.removeTerm').live('click',function(e) {
 		// clean fields
-		alert('clean fields');
 		var termForm = $(this).parents('form').find('.newTermForm');
 		$(termForm).hide();
 		$(termForm).find('input[name="newTerm"]').val(0);

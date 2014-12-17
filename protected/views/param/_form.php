@@ -98,6 +98,7 @@
 					<input type="text" value="<?php echo $_POST['Term']['names'][$i]; ?>" name="Term[names][]" />
 				</div>
 			<?php } ?>
+				<button class="removeTerm">Remove term</button>
 			</div>
 			<?php
 		} else {
@@ -114,6 +115,7 @@
 				<div>
 					<input type="text" value="H" name="Term[names][]" />
 				</div>
+				<button class="removeTerm">Remove term</button>
 			</div>
 			<?php
 		}
