@@ -42,9 +42,24 @@ class Controller extends CController
 			),
 		);
 		$cs->registerCoreScript('jquery.ui');
-		Yii::app()->clientScript->registerScriptFile('/js/uniform.js', CClientScript::POS_HEAD);
 		Yii::app()->clientScript->registerScriptFile('/js/main.js', CClientScript::POS_HEAD);
 
 		return parent::init();
 	}
+
+    protected function successAjaxResponce($data) {
+        echo CJSON::encode(array(
+                'status' => 'OK',
+                'data' => $data,
+            ));
+        Yii::app()->end();
+    }
+
+    protected function failedAjaxResponce($data) {
+        echo CJSON::encode(array(
+                'status' => 'ERROR',
+                'data' => $data,
+            ));
+        Yii::app()->end();
+    }
 }

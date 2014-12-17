@@ -1,0 +1,1229 @@
+	/*
+		
+	__          __  _                            _______      _______ _             _____ _         _           _               _   
+	\ \        / / | |                          |__   __|    |__   __| |           / ____| |       | |         | |             | |  
+	 \ \  /\  / /__| | ___ ___  _ __ ___   ___     | | ___      | |  | |__   ___  | (___ | |_ _   _| | ___  ___| |__   ___  ___| |_ 
+ 	  \ \/  \/ / _ \ |/ __/ _ \| '_ ` _ \ / _ \    | |/ _ \     | |  | '_ \ / _ \  \___ \| __| | | | |/ _ \/ __| '_ \ / _ \/ _ \ __|
+  	   \  /\  /  __/ | (_| (_) | | | | | |  __/    | | (_) |    | |  | | | |  __/  ____) | |_| |_| | |  __/\__ \ | | |  __/  __/ |_ 
+	    \/  \/ \___|_|\___\___/|_| |_| |_|\___|    |_|\___/     |_|  |_| |_|\___| |_____/ \__|\__, |_|\___||___/_| |_|\___|\___|\__|
+                                                                                          	   __/ |                                
+                                                                                          	  |___/                                 
+		  
+	*/
+	
+	/*                                                                                                                                    */
+	/*              This document contains the sites main stylesheet (Blue). It makes sure that everything displays corectly              */
+	/*                                                                                                                                    */
+	/* ------------------------------------------------------- RESET STYLES START ------------------------------------------------------- */
+	/*                                                                                                                                    */
+
+	body,div,dl,dt,dd,ul,ol,li,h3,h4,h5,h6,pre,form,fieldset,input,p,blockquote,th,td,header { margin: 0; padding: 0; }
+ 
+	table {	border-collapse: collapse; border-spacing: 0; }
+ 
+	fieldset,img { border: 0; }
+ 
+	address,caption,cite,code,dfn,em,strong,th,var { font-style: normal; font-weight: normal; }
+ 
+	ol,ul { list-style: none; text-decoration: none; }
+ 
+	li a { text-decoration: none; }
+ 
+	caption,th { text-align: left; }
+ 
+	h1,h2,h3,h4,h5,h6 { padding: 0px; }
+
+	/*                                                                                                                                    */
+	/* -------------------------------------------------------- RESET STYLES END -------------------------------------------------------- */
+	/*                                                                                                                                    */
+ 
+	body {
+		background-image: url(../images/background.png);
+		background-repeat: repeat;
+		width: 100%;
+		height: 100%;
+		font-family: "Droid Sans";
+		color: #444444; }
+ 	
+	
+	/*                                                                                                                                    */
+	/* ------------------------------------------------------ COLOUR CHANGER START ------------------------------------------------------ */
+	/*                                                                                                                                    */
+ 
+	#colour-changer{
+		width: 50px;
+		height: 100%;
+		position: absolute;
+		top: 30px;
+		left: 0px; }
+ 
+		a.colour-changer-link {
+			background-image: url(../images/colour_changer_background.png);
+			background-repeat: no-repeat;
+			width: 50px;
+			height: 180px;
+			float: left; }
+ 
+			a.colour-changer-link:hover {
+				background-image: url(../images/colour_changer_background_hover.png);
+				background-repeat: no-repeat;
+				width: 50px;
+				height: 180px;
+				float: left; }
+ 
+	#colour-changer-header {
+		background-image: url(../images/colour_changer_header.png);
+		background-repeat: no-repeat;
+		width: 50px;
+		height: 23px;
+		float: left; }
+	 
+	#colour-changer-footer {
+		background-image: url(../images/colour_changer_footer.png);
+		background-repeat: no-repeat;
+		width: 50px;
+		height: 30px;
+		float: left; }
+	 
+	#colour-changer-blank {
+		background-image: url(../images/colour_changer_blank_background.png);
+		background-repeat: repeat;
+		width: 50px;
+		height: auto;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		overflow: hidden; }
+	 
+	.colour-changer-blue {
+		background-image: url(../images/colour_changer_blue_block.png);
+		background-repeat: no-repeat;
+		width: 20px;
+		height: 20px;
+		border: 1px solid #AAAAAA;
+		margin-left: 10px;
+		margin-top: 10px;
+		cursor: pointer;
+		float: left; }
+	 
+	.colour-changer-green {
+		background-image: url(../images/colour_changer_green_block.png);
+		background-repeat: no-repeat;
+		width: 20px;
+		height: 20px;
+		border: 1px solid #AAAAAA;
+		margin-left: 10px;
+		cursor: pointer;
+		float: left; }
+	 
+	.colour-changer-red {
+		background-image: url(../images/colour_changer_red_block.png);
+		background-repeat: no-repeat;
+		width: 20px;
+		height: 20px;
+		border: 1px solid #AAAAAA;
+		margin-left: 10px;
+		margin-top: 10px;
+		cursor: pointer;
+		float: left; }
+	 
+	.colour-changer-yellow {
+		background-image: url(../images/colour_changer_yellow_block.png);
+		background-repeat: no-repeat;
+		width: 20px;
+		height: 20px;
+		border: 1px solid #AAAAAA;
+		margin-left: 10px;
+		margin-top: 10px;
+		cursor: pointer;
+		float: left; }
+	 
+		a.colour-changer-cross {
+			background-image: url(../images/colour_changer_cross.png);
+			background-repeat: no-repeat;
+			width: 21px;
+			height: 21px;
+			margin-left: 10px;
+			margin-top: 10px;
+			cursor: pointer;
+			float: left; }
+ 
+			.colour-changer-cross:hover {
+				background-image: url(../images/colour_changer_blue_cross.png);
+				background-repeat: no-repeat;
+				width: 21px;
+				height: 21px;
+				margin-left: 10px;
+				margin-top: 10px;
+				cursor: pointer;
+				float: left; }
+				
+	/*                                                                                                                                    */
+	/* ------------------------------------------------------- COLOUR CHANGER END ------------------------------------------------------- */
+	/*                                                                                                                                    */
+	
+	
+ 	/*                                                                                                                                    */
+	/* ------------------------------------------------------ GENERAL STYLES START ------------------------------------------------------ */
+	/*                                                                                                                                    */
+	
+	.green { color: #34CEFE; }
+	.white { color: #FFFFFF; }
+	.grey {color: #444444; }
+	 
+	a.index-link {
+		color: #FFFFFF;
+		text-decoration: none; }
+	 
+		a.index-link:hover { color: #FFFFFF; }
+	 
+	.even {
+		background-image: url(../images/even_background.png);
+		background-repeat: repeat; }
+	 
+	.odd {
+		background-image: url(../images/odd_background.png);
+		background-repeat: repeat; }
+	 
+	.preload {
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		visibility: hidden; }
+	 
+	h1 {
+		font-size: 15px;
+		color: #FFFFFF;
+		font-weight: 100;
+		margin: 0 0 17px 0;
+		padding: 0; }
+	 
+	p { 
+		padding-top: 20px; 
+		clear: left; }
+ 
+	#background-greenbar {
+		background-image: url(../images/background_bluebar.png);
+		background-repeat: repeat-x;
+		width: 100%;
+		min-width: 940px;
+		height: 4px; }
+	 
+	#page-wrapper {
+		width: 940px;
+		height: 100%;
+		margin: 0 auto 0; }
+	 
+	#logo {
+		width: 230px;
+		height: 92px;
+		float: left; }
+		
+	.horizontal-rule {
+		background-image: url(../images/horizontal_rule.png);
+		background-repeat: repeat-x;
+		width: 940px;
+		height: 1px;
+		float: left; }
+	
+	/*                                                                                                                                    */
+	/* ------------------------------------------------------- GENERAL STYLES END ------------------------------------------------------- */
+	/*                                                                                                                                    */
+	
+	
+	/*                                                                                                                                    */
+	/* ----------------------------------------------------- NAVIGATION STYLE START ----------------------------------------------------- */
+	/*                                                                                                                                    */
+ 
+	nav {
+		width: 651px;
+		height: 26px;
+		margin: 33px -20px 0 0;
+		float: right; }
+	 
+	nav li {
+		font-size: 13px;
+		float: right;
+		margin-right: 20px; }
+	 
+		nav li a {
+			color: #444444;
+			float: left; 
+			-webkit-transition: all .5s ease-in-out; 
+			-moz-transition: all .5s ease-in-out; }
+	 
+			nav li a .menu_right {
+				height: 26px;
+				cursor: pointer;
+				text-align: center;
+				padding: 5px 15px 0px 15px;
+				float: left; }
+	 
+			nav li a:hover {
+				background: url(../images/navigation_hover_blue_background.png) repeat-x;
+				color: #FFFFFF;
+				float: left; }
+				
+	/*                                                                                                                                    */
+	/* ------------------------------------------------------ NAVIGATION STYLE END ------------------------------------------------------ */
+	/*                                                                                                                                    */
+
+	
+	/*                                                                                                                                    */
+	/* --------------------------------------------------- PROMOTION BAR STYLE START ---------------------------------------------------- */
+	/*                                                                                                                                    */
+	 
+	#bar-invisible-wrapper {
+		width: 940px;
+		height: 32px;
+		margin-top: 20px;
+		float: left; }
+	 
+	#promotion-bar {
+		background-image: url(../images/bar_background.png);
+		background-repeat: repeat-x;
+		width: 938px;
+		border: 1px solid #AAAAAA;
+		height: 32px;
+		float: left; }
+	 
+	#bar-tick {
+		background-image: url(../images/bar_blue_tick.png);
+		background-repeat: no-repeat;
+		width: 36px;
+		height: 32px;
+		float: left; }
+	 
+	a.bar-cross {
+		background-image: url(../images/bar_cross.png);
+		background-repeat: no-repeat;
+		width: 36px;
+		height: 32px;
+		float: right; }
+	 
+		a.bar-cross:hover {
+			background-image: url(../images/bar_blue_cross.png);
+			background-repeat: no-repeat;
+			width: 36px;
+			height: 32px;
+			float: right; }
+	 
+	.bar-left-text {
+		width: auto;
+		line-height: 12px;
+		font-family: "Droid Sans";
+		font-size: 12px;
+		margin-top: 11px;
+		float: left; }
+	 
+	.bar-right-text {
+		width: auto;
+		line-height: 12px;
+		font-family: "Droid Sans";
+		font-size: 12px;
+		margin-top: 11px;
+		float: right; }
+		
+	/*                                                                                                                                    */
+	/* ----------------------------------------------------- PROMOTION BAR STYLE END ---------------------------------------------------- */
+	/*                                                                                                                                    */
+	
+	
+	/*                                                                                                                                    */
+	/* ---------------------------------------------------- JQEURY BANNER STYLE START --------------------------------------------------- */
+	/*                                                                                                                                    */
+	
+	#index-banner {
+		width: 938px;
+		height: 200px;
+		overflow: hidden;
+		margin-top: 20px;
+		border: 1px solid #AAAAAA;
+		float: left; }
+	 
+	div.orbit {
+		width: 1px;
+		height: 1px;
+		position: relative;
+		overflow: hidden; }
+	 
+		div.orbit img {
+			position: absolute;
+			top: 0;
+			left: 0; }
+	 
+			div.orbit a img { border: none; }
+	 
+	.orbit-bullets {
+		position: absolute;
+		z-index: 1000;
+		list-style: none;
+		right: 10px;
+		top: 10px;
+		margin: 0;
+		padding: 0;
+		float: right; }
+	 
+		.orbit-bullets li {
+			float: left;
+			margin-left: 5px;
+			cursor: pointer;
+			color: #999;
+			text-indent: -9999px;
+			background: url(../images/bullets_blue.png) no-repeat;
+			width: 14px;
+			height: 14px;
+			overflow: hidden; }
+	 
+			.orbit-bullets li.active {
+				color: #222;
+				background-position: -14px 0; }
+				
+	/*                                                                                                                                    */
+	/* ----------------------------------------------------- JQUERY BANNER STYLE END ---------------------------------------------------- */
+	/*                                                                                                                                    */
+	
+	
+	/*                                                                                                                                    */
+	/* --------------------------------------------------- PACKAGE SLIDER STYLE START --------------------------------------------------- */
+	/*                                                                                                                                    */
+	
+	/* ----------------------------------------------------- SHARED PACKAGE START  ------------------------------------------------------ */
+	
+	#index-shared-wrapper {
+		width: 288px;
+		height: 305px;
+		margin-top: 20px;
+		overflow: hidden;
+		float: left; }
+	 
+	#index-shared-background {
+		background-image: url(../images/shared_hosting_background.png);
+		background-repeat: no-repeat;
+		width: 288px;
+		height: 305px;
+		position: absolute;
+		z-index: 0;
+		float: left; }
+	 
+	#index-shared-hover {
+		background-image: url(../images/shared_hosting_hover.png);
+		background-repeat: no-repeat;
+		overflow: hidden;
+		width: 288px;
+		height: 305px;
+		position: relative;
+		z-index: 2;
+		float: left; }
+	 
+	#index-shared-footer-wrapper {
+		width: 288px;
+		height: 67px;
+		float: left; }
+	 
+	#index-shared-footer {
+		background-image: url(../images/shared_hosting_footer.png);
+		background-repeat: no-repeat;
+		width: 288px;
+		height: 67px;
+		position: relative;
+		top: 0;
+		z-index: 5;
+		float: left; }
+	 
+	.index-shared-text {
+		width: 242px;
+		margin-left: 22px;
+		margin-top: 70px;
+		font-size: 13px;
+		line-height: 13px;
+		text-align: center;
+		float: left; }
+	 
+	#index-shared-from {
+		width: 242px;
+		margin-left: 22px;
+		margin-top: 150px;
+		font-size: 11px;
+		line-height: 11px;
+		text-align: center;
+		float: left; }
+	 
+	#index-shared-price {
+		width: 242px;
+		margin-left: 22px;
+		margin-top: 9px;
+		font-size: 15px;
+		color: #FFFFFF;
+		line-height: 15px;
+		text-align: center;
+		float: left; }
+	 
+	#index-shared-information {
+		width: 242px;
+		margin-left: 22px;
+		margin-top: 30px;
+		font-size: 13px;
+		line-height: 13px;
+		text-align: center;
+		float: left; }
+	 
+	#index-shared-features {
+		width: 242px;
+		margin-left: 23px;
+		margin-right: 23px;
+		margin-top: 20px;
+		font-size: 13px;
+		color: #FFFFFF;
+		float: left; }
+	 
+		#index-shared-features li {
+			padding: 5px 0px 0 10px;
+			line-height: 22px; }
+	
+	/* ------------------------------------------------------ SHARED PACKAGE END  ------------------------------------------------------- */
+	
+	/* ---------------------------------------------------- RESELLER PACKAGE START  ----------------------------------------------------- */
+	 
+	#index-reseller-wrapper {
+		width: 288px;
+		height: 305px;
+		margin-left: 38px;
+		margin-top: 20px;
+		overflow: hidden;
+		float: left; }
+	 
+	#index-reseller-background {
+		background-image: url(../images/reseller_hosting_blue_background.png);
+		background-repeat: no-repeat;
+		width: 288px;
+		height: 305px;
+		position: absolute;
+		z-index: 0;
+		float: left; }
+	 
+	#index-reseller-hover {
+		background-image: url(../images/shared_hosting_hover.png);
+		background-repeat: no-repeat;
+		overflow: hidden;
+		width: 288px;
+		height: 305px;
+		position: relative;
+		z-index: 2;
+		float: left; }
+	 
+	#index-reseller-footer-wrapper {
+		width: 288px;
+		height: 67px;
+		margin-left: 38px;
+		float: left; }
+	 
+	#index-reseller-footer {
+		background-image: url(../images/reseller_hosting_footer.png);
+		background-repeat: no-repeat;
+		width: 288px;
+		height: 67px;
+		position: relative;
+		top: 0;
+		z-index: 5;
+		float: left; }
+	 
+	.index-reseller-text {
+		width: 248px;
+		margin-left: 20px;
+		margin-top: 70px;
+		font-size: 13px;
+		line-height: 13px;
+		text-align: center;
+		float: left; }
+	 
+	#index-reseller-from {
+		width: 228px;
+		margin-left: 20px;
+		margin-top: 150px;
+		font-size: 11px;
+		line-height: 11px;
+		text-align: center;
+		float: left; }
+	 
+	#index-reseller-price {
+		width: 248px;
+		margin-left: 20px;
+		margin-top: 9px;
+		font-size: 15px;
+		color: #FFFFFF;
+		line-height: 15px;
+		text-align: center;
+		float: left; }
+	 
+	#index-reseller-information {
+		width: 248px;
+		margin-top: 30px;
+		margin-left:20px;
+		font-size: 13px;
+		line-height: 13px;
+		text-align: center;
+		float: left; }
+	 
+	#index-reseller-features {
+		width: 242px;
+		margin-right: 23px;
+		margin-left: 23px;
+		margin-top: 20px;
+		font-size: 13px;
+		color: #FFFFFF;
+		float: left; }
+	 
+		#index-reseller-features li {
+			padding: 5px 0px 0 10px;
+			line-height: 22px; }
+			
+	/* ----------------------------------------------------- RESELLER PACKAGE END  ------------------------------------------------------ */
+	
+	/* ----------------------------------------------------- DOMAIN PACKAGE START  ------------------------------------------------------ */
+	 
+	#index-domains-wrapper {
+		width: 288px;
+		height: 305px;
+		margin-top: 20px;
+		margin-left: 38px;
+		overflow: hidden;
+		float: left; }
+	 
+	#index-domains-background {
+		background-image: url(../images/domain_names_background.png);
+		background-repeat: no-repeat;
+		width: 288px;
+		height: 305px;
+		position: absolute;
+		z-index: 0;
+		float: left; }
+	 
+	#index-domains-hover {
+		background-image: url(../images/shared_hosting_hover.png);
+		background-repeat: no-repeat;
+		overflow: hidden;
+		width: 288px;
+		height: 305px;
+		position: relative;
+		z-index: 2;
+		float: left; }
+	 
+	#index-domains-footer-wrapper {
+		width: 288px;
+		height: 67px;
+		margin-left: 38px;
+		float: left; }
+	 
+	#index-domains-footer {
+		background-image: url(../images/domain_names_footer.png);
+		background-repeat: no-repeat;
+		width: 288px;
+		height: 67px;
+		position: relative;
+		top: 0;
+		z-index: 5;
+		float: left; }
+	 
+	#index-domains-text {
+		width: 248px;
+		margin-left: 20px;
+		margin-top: 70px;
+		font-size: 13px;
+		line-height: 13px;
+		text-align: center;
+		float: left; }
+	 
+	#index-domains-from {
+		width: 248px;
+		margin-left: 20px;
+		margin-top: 150px;
+		font-size: 11px;
+		line-height: 11px;
+		text-align: center;
+		float: left; }
+	 
+	#index-domains-price {
+		width: 248px;
+		margin-left: 20px;
+		margin-top: 9px;
+		font-size: 15px;
+		color: #FFFFFF;
+		line-height: 15px;
+		text-align: center;
+		float: left; }
+	 
+	#index-domains-information {
+		width: 248px;
+		margin-left: 20px;
+		margin-top: 30px;
+		font-size: 13px;
+		line-height: 13px;
+		text-align: center;
+		float: left; }
+	 
+	#index-domains-tld {
+		width: 121px;
+		margin-left: 23px;
+		margin-top: 70px;
+		font-size: 13px;
+		float: left; }
+	 
+		#index-domains-tld li {
+			padding: 5px 0px 0 10px;
+			line-height: 22px; }
+	 
+	#index-domains-tld-price {
+		width: 121px;
+		margin-top: 70px;
+		font-size: 13px;
+		float: left; }
+	 
+		#index-domains-tld-price li {
+			padding: 5px 10px 0 0px;
+			line-height: 22px;
+			text-align: right;
+			color: #FFFFFF; }
+	
+	/* ------------------------------------------------------ DOMAIN PACKAGE END  ------------------------------------------------------- */
+			
+	/*                                                                                                                                    */
+	/* ---------------------------------------------------- PACKAGE SLIDER STYLE END ---------------------------------------------------- */
+	/*                                                                                                                                    */
+	
+	
+	/*                                                                                                                                    */
+	/* ---------------------------------------------------- TWITTER BAR STYLE START ----------------------------------------------------- */
+	/*                                                                                                                                    */
+	 
+	#twitter-invisible-wrapper {
+		width: 940px;
+		height: 32px;
+		margin-top: 20px;
+		float: left; }
+	 
+	#twitter-wrapper {
+		background-image: url(../images/bar_background.png);
+		background-repeat: repeat-x;
+		width: 940px;
+		height: 32px;
+		float: left; }
+	 
+	#twitter-bird {
+		background-image: url(../images/twitter_blue_bird.png);
+		background-repeat: no-repeat;
+		width: 63px;
+		height: 32px;
+		float: left; }
+	 
+	a.twitter-cross {
+		background-image: url(../images/bar_cross.png);
+		background-repeat: no-repeat;
+		width: 36px;
+		height: 32px;
+		float: right; }
+	 
+		a.twitter-cross:hover {
+			background-image: url(../images/bar_blue_cross.png);
+			background-repeat: no-repeat;
+			width: 36px;
+			height: 32px;
+			float: right; }
+			
+	/*                                                                                                                                    */
+	/* ------------------------------------------------------ TWITTER BAR STYLE END ----------------------------------------------------- */
+	/*                                                                                                                                    */
+	
+	
+	/*                                                                                                                                    */
+	/* ------------------------------------------------------- FOOTER STYLE START ------------------------------------------------------- */
+	/*                                                                                                                                    */
+	 
+	footer {
+		width: 940px;
+		height: 100%;
+		margin-top: 20px;
+		float: left; }
+		
+	footer ul {
+		width: auto;
+		font-size: 12px;
+		line-height: 18px;
+		color: #616161;
+		margin-top: 10px;
+		margin-right:20px;
+		margin-bottom: 10px;
+		float: left; }
+		
+	footer a{
+		color: #444444;
+		text-decoration: none; 
+		-webkit-transition: all .5s ease-in-out; 
+		-moz-transition: all .5s ease-in-out;
+		}
+	
+		footer a:hover{ color: #34CEFE; }
+	 
+	#footer-sitemap {
+		font-size: 13px;
+		line-height: 14px;
+		padding-top: 47px;
+		float: left; }
+	 
+	#footer-logos {
+		background-image: url(../images/footer_logos.png);
+		background-repeat: no-repeat;
+		width: 361px;
+		height: 68px;
+		float: right; }
+	 
+	#copyright {
+		width: auto;
+		font-size: 12px;
+		color: #333333;
+		margin-top: 10px;
+		float: right; }
+		
+	/*                                                                                                                                    */
+	/* -------------------------------------------------------- FOOTER STYLE END -------------------------------------------------------- */
+	/*                                                                                                                                    */
+	
+	
+	/*                                                                                                                                    */
+	/* --------------------------------------------------- SHARED HOSTING STYLE START --------------------------------------------------- */
+	/*                                                                                                                                    */
+	
+	#shared-banner {
+		background-image: url(../images/shared_banner.png);
+		background-repeat: no-repeat;
+		width: 940px;
+		height: 113px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		float: left; }
+		
+	#box-styles-banner{
+		background-image: url(../images/box_styles_banner.png);
+		background-repeat: no-repeat;
+		width: 940px;
+		height: 115px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		float: left; }
+		
+	#contact-banner{
+		background-image: url(../images/contact_banner.png);
+		background-repeat: no-repeat;
+		width: 940px;
+		height: 115px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		float: left; }
+		
+	#testimonial-banner{
+		background-image: url(../images/testimonial_banner.png);
+		background-repeat: no-repeat;
+		width: 940px;
+		height: 115px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		float: left; }
+	 
+	#shared-content-header {
+		background-image: url(../images/shared_content_header.png);
+		background-repeat: no-repeat;
+		width: 940px;
+		height: 17px;
+		margin-top: 20px;
+		float: left; }
+	 
+	#shared-content-background {
+		background-image: url(../images/shared_content_background.png);
+		background-repeat: repeat-y;
+		width: 940px;
+		height: auto;
+		height: 100%;
+		float: left; }
+	 
+	#shared-content-header-text {
+		width: 900px;
+		height: auto;
+		margin-left: 20px;
+		float: left; }
+	 
+	.shared-content-horizontal-rule {
+		background-image: url(../images/horizontal_rule.png);
+		background-repeat: repeat-x;
+		width: 900px;
+		height: 2px;
+		float: left; }
+	 
+	#shared-content-description {
+		width: 900px;
+		height: auto;
+		margin: 20px 0 20px 0;
+		font-size: 12px;
+		font-style: italic;
+		float: left; }
+	 
+	#shared-content-features-header {
+		background-image: url(../images/shared_content_features_header.png);
+		background-repeat: no-repeat;
+		width: 940px;
+		height: 43px;
+		margin-top: 10px;
+		float: left; }
+	 
+	#shared-content-features-background {
+		background-image: url(../images/shared_content_features_background.png);
+		background-repeat: repeat-y;
+		width: 940px;
+		height: 100%;
+		height: auto;
+		float: left; }
+	 
+	#shared-content-features-footer {
+		background-image: url(../images/shared_content_features_footer.png);
+		background-repeat: no-repeat;
+		width: 940px;
+		height: 32px;
+		float: left; }
+	 
+	.shared-content-first-title {
+		width: 150px;
+		height: auto;
+		font-size: 13px;
+		color: #000000;
+		text-align: center;
+		margin: 19px 0 0 236px;
+		float: left; }
+	 
+	.shared-content-other-title {
+		width: 150px;
+		height: auto;
+		font-size: 13px;
+		color: #000000;
+		text-align: center;
+		margin-top: 19px;
+		float: left; }
+	 
+	#shared-content-features-list {
+		width: 135px;
+		height: auto;
+		margin: 10px 0 0 100px;
+		float: left; }
+	 
+		#shared-content-features-list li {
+			font-size: 12px;
+			line-height: 24px;
+			height: 24px; }
+	 
+	.shared-content-features-list {
+		width: 150px;
+		height: auto;
+		margin-top: 10px;
+		float: left; }
+	 
+		.shared-content-features-list li {
+			font-size: 12px;
+			line-height: 24px;
+			height: 24px;
+			text-align: center; }
+	 
+	.shared-content-features-tick {
+		background-image: url(../images/features_blue_tick.png);
+		background-repeat: no-repeat;
+		width: 17px;
+		height: 24px;
+		margin-left: auto;
+		margin-right: auto; }
+	 
+	.shared-content-dropdown-header {
+		background-image: url(../images/shared_content_dropdown_header.png);
+		background-repeat: repeat-x;
+		width: 940px;
+		height: 32px;
+		margin-top: 20px;
+		cursor: pointer;
+		float: left; }
+	 
+	.shared-content-dropdown-header-title {
+		font-size: 13px;
+		margin-left: 20px;
+		margin-top: 10px;
+		float: left; }
+	 
+	.shared-content-dropdown-plus {
+		background-image: url(../images/shared_content_dropdown_blue_plus.png);
+		background-repeat: no-repeat;
+		width: 51px;
+		height: 32px;
+		float: right; }
+	 
+	.shared-content-dropdown-background {
+		background-image: url(../images/shared_content_dropdown_background.png);
+		background-repeat: repeat-y;
+		width: 940px;
+		height: auto;
+		float: left; }
+	 
+	.shared-content-main-dropdown-list {
+		width: 135px;
+		height: auto;
+		margin: 10px 0 10px 100px;
+		color: #FFFFFF;
+		float: left; }
+	 
+		.shared-content-main-dropdown-list li {
+			font-size: 12px;
+			line-height: 24px;
+			height: 24px; }
+			
+	/*                                                                                                                                    */
+	/* ---------------------------------------------------- SHARED HOSTING STYLE END ---------------------------------------------------- */
+	/*                                                                                                                                    */
+	
+	
+	/*                                                                                                                                    */
+	/* ----------------------------------------------------- BLANK PAGE STYLES START ---------------------------------------------------- */
+	/*                                                                                                                                    */
+	.content-wrapper {
+		width: 940px;
+		height: auto;
+		float: left; }
+		
+	.content-full-width-header {
+		background-image: url(../images/content_full_width_header.png);
+		background-repeat: no-repeat;
+		width: 940px;
+		height: 20px;
+		margin-top: 20px;
+		float: left; }
+	
+	.content-full-width-background {
+		background-image: url(../images/content_full_width_background.png);
+		background-repeat: repeat;
+		width: 940px;
+		margin-top: -2px;
+		float: left; }
+		
+	.content-full-width-footer {
+		background-image: url(../images/content_full_width_footer.png);
+		background-repeat: no-repeat;
+		width: 940px;
+		height: 20px;
+		float: left; }
+		
+	.content-full-width-body {
+		width: 900px;
+		height: auto;
+		font-size: 12px;
+		margin-left: 20px;
+		float: left; }
+		
+	.content-one-third-wrapper {
+		width: 300px;
+		height: auto;
+		float: left; }
+		
+	.content-second-one-third-wrapper {
+		width: 300px;
+		height: auto;
+		margin-left:20px;
+		float: left; }
+		
+	.content-one-third-header {
+		background-image: url(../images/content_one_third_header.png);
+		background-repeat: no-repeat;
+		width: 300px;
+		height: 20px;
+		margin-top: 20px;
+		float: left; }
+	
+	.content-one-third-background {
+		background-image: url(../images/content_one_third_background.png);
+		background-repeat: repeat;
+		width: 300px;
+		margin-top: -2px;
+		float: left; }
+		
+	.content-one-third-footer {
+		background-image: url(../images/content_one_third_footer.png);
+		background-repeat: no-repeat;
+		width: 300px;
+		height: 20px;
+		float: left; }
+		
+	.content-one-third-body {
+		width: 260px;
+		height: auto;
+		font-size: 12px;
+		margin-left: 20px;
+		float: left; }
+		
+	.testimonial-link {
+		color: #000000; 
+		text-decoration: none; }
+		
+	.testimonial-link:hover {
+		color: #FFFFFF; }
+		
+	.content-two-third-wrapper {
+		width: 620px;
+		height: auto;
+		float: left; }
+	
+	.content-second-two-third-wrapper {
+		width: 620px;
+		margin-left: 20px;
+		height: auto;
+		float: left; }
+		
+	.content-two-third-header {
+		background-image: url(../images/content_two_third_header.png);
+		background-repeat: no-repeat;
+		width: 620px;
+		height: 20px;
+		margin-top: 20px;
+		float: left; }
+	
+	.content-two-third-background {
+		background-image: url(../images/content_two_third_background.png);
+		background-repeat: repeat;
+		width: 620px;
+		margin-top: -2px;
+		float: left; }
+		
+	.content-two-third-footer {
+		background-image: url(../images/content_two_third_footer.png);
+		background-repeat: no-repeat;
+		width: 620px;
+		height: 20px;
+		float: left; }
+		
+	.content-two-third-body {
+		width: 580px;
+		height: auto;
+		font-size: 12px;
+		margin-left: 20px;
+		float: left; }
+		
+	.content-horizontal-rule {
+		background-image: url(../images/horizontal_rule.png);
+		background-repeat: repeat-x;
+		width: auto;
+		width: 100%;
+		height: 2px;
+		float: left; }
+		
+	
+	/*                                                                                                                                    */
+	/* ------------------------------------------------------ BLANK PAGE STYLES END ----------------------------------------------------- */
+	/*                                                                                                                                    */
+	
+	
+
+	/*                                                                                                                                    */
+	/* ------------------------------------------------------ TOOLTIP STYLE START ------------------------------------------------------- */
+	/*                                                                                                                                    */
+
+	.tooltip { color: #FFFFFF; }
+	
+	#tiptip_holder { 
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 99999; }
+		
+	#tiptip_content { 
+		font-size: 11px;
+		color: #000000;
+		border: 1px solid #444444;
+		background-color: #CCCCCC;
+		padding: 10px 10px 10px 10px; }
+		
+	#tiptip_arrow, #tiptip_arrow_inner {
+		position: absolute;
+		border-color: transparent;
+		border-style: solid;
+		border-width: 6px;
+		height: 0;
+		width: 0; }
+		
+	#tiptip_holder.tip_top #tiptip_arrow { border-top-color:#444444; }
+	#tiptip_holder.tip_bottom #tiptip_arrow { border-bottom-color:#444444; }
+	#tiptip_holder.tip_right #tiptip_arrow { border-right-color:#444444; }
+	#tiptip_holder.tip_left #tiptip_arrow { border-left-color:#444444; }
+
+	/*                                                                                                                                    */
+	/* ------------------------------------------------------- TOOLTIP STYLE END -------------------------------------------------------- */
+	/*                                                                                                                                    */
+	
+	
+	/*                                                                                                                                    */
+	/* --------------------------------------------------- CONTACT FORM STYLE START ----------------------------------------------------- */
+	/*                                                                                                                                    */
+	
+	.contact-input {
+		background-color: #AAAAAA;
+		border: 1px solid #999999;
+		padding: 3px;
+		color: #444444;
+		width: 150px;
+		margin-left: 10px;
+		float: left; }
+		
+	.contact-message {
+		background-color: #AAAAAA;
+		border: 1px solid #999999;
+		padding: 3px;
+		resize: none;
+		color: #444444;
+		width: 413px;
+		margin-left: 10px;
+		margin-top: 20px; }
+		
+	.contact-submit {
+		background-color: #AAAAAA;
+		border: 1px solid #999999;
+		padding: 3px;
+		color: #444444;
+		width: 150px;
+		margin-left: 10px;
+		margin-top:20px;
+		float: left; }
+		
+	.contact-margin{
+		margin-left: 10px; }
+	
+	input.contact-input:hover {
+		border: 1px solid #666666; }
+		
+	.contact-message:hover {
+		border: 1px solid #666666; }
+		
+	.contact-submit:hover {
+		border: 1px solid #666666; }
+			
+	.contact-input:focus {
+		outline-width: 0; }
+		
+	.contact-message:focus {
+		outline-width: 0; }
+	
+	/*                                                                                                                                    */
+	/* ---------------------------------------------------- CONTACT FORM STYLE END ------------------------------------------------------ */
+	/*                                                                                                                                    */
+	
+
+	/*
+	
+	 _______ _            ______           _             
+	|__   __| |          |  ____|         | |            
+	   | |  | |__   ___  | |__   _ __   __| |            
+	   | |  | '_ \ / _ \ |  __| | '_ \ / _` |            
+	   | |  | | | |  __/ | |____| | | | (_| |  _   _   _ 
+	   |_|  |_| |_|\___| |______|_| |_|\__,_| (_) (_) (_)
+	   
+	*/

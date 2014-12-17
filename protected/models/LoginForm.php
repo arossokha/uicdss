@@ -69,7 +69,8 @@ class LoginForm extends CFormModel
 			$duration = $this->rememberMe ? 3600 * 24 * 30 : 20 * 60 * 60; // 30 days
 			Yii::app()->user->login($this->_identity, $duration);
 
-			$user = User::model()->find('email = :e', array(':e' => $this->username));
+			$user = User::model()->find('email = :e OR login = :e', array(':e' => $this->username));
+
 			Yii::app()->user->setState('id', $user->userId);
 			Yii::app()->user->setState('User', $user->attributes);
 			return true;

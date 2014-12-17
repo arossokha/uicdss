@@ -8,7 +8,7 @@
 return array(
 	'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
 	'name' => 'template',
-	'sourceLanguage' => 'ru',
+	'sourceLanguage' => 'en',
 
 	// preloading 'log' component
 	'preload' => array('log'),
@@ -48,6 +48,7 @@ return array(
 		),
 		'urlManager' => array(
 			'urlFormat' => 'path',
+			// 'caseSensitive' => false,
 			'showScriptName' => false,
 			'rules' => require('rules.php'),
 		),
