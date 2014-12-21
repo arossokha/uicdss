@@ -46,4 +46,22 @@ class ActiveRecord extends CActiveRecord
 
 		return parent::delete();
 	}
+
+	public function deleteAll($condition='',$params=array())
+	{
+		$columns = $this->tableSchema->columns;
+
+		if(array_key_exists('active', $columns)) {
+		    Yii::trace(get_class($this).'.deleteAll()','system.db.ar.CActiveRecord');
+		    $builder=$this->getCommandBuilder();
+		    $criteria=$builder->createCriteria($condition,$params);
+		    $command=$builder->createUpdateCommand($this->getTableSchema(),$criteria);
+
+		    var_dump("NOT IMPLEMENTED",$command);
+		    die();
+		    return $command->execute();
+		}
+
+		return parent::deleteAll();
+	}
 }

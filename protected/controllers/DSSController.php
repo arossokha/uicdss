@@ -112,8 +112,6 @@ class DSSController extends Controller
             }
             catch (Exception $e)
             {
-            	var_dump($e);
-            	die();
                 $transaction->rollback();
             }
         } else {

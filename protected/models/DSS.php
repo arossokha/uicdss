@@ -111,6 +111,13 @@ class DSS extends ActiveRecord
 	}
 
 	public function beforeDelete() {
+		$nodes = Node::model()->findAll('dssId = :id',array(':id' => $this->dssId));
+		foreach ($nodes as $node) {
+			Param::model()->deleteAll('nodeId = :id',array(':id' => $node->nodeId));
+			if($node->outputParamId) {
+				Param::model()->delete('paramId = :id',array(':id' => $node->outputParamId));
+			}
+		}
 		Node::model()->deleteAll('dssId = :id',array(':id' => $this->dssId));
 		return parent::beforeDelete();
 	}

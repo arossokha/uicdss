@@ -46,7 +46,7 @@ class m141201_163833_sppr_core extends CDbMigration
                                 'termId' => 'int(11) DEFAULT NULL',
                            ), 'ENGINE=InnoDB CHARSET=utf8');
         
-        $this->addForeignKey('Node_OutputParam_fk','Node','outputParamId','Param','paramId');
+        // $this->addForeignKey('Node_OutputParam_fk','Node','outputParamId','Param','paramId');
         $this->addForeignKey('Param_Term_fk','Param','termId','Term','termId');
         $this->addForeignKey('Param_Node_fk','Param','nodeId','Node','nodeId');
 
@@ -55,7 +55,7 @@ class m141201_163833_sppr_core extends CDbMigration
     public function down()
     {
     	$this->dropForeignKey('Node_DSS_fk','Node');
-		$this->dropForeignKey('Node_OutputParam_fk','Node');
+		// $this->dropForeignKey('Node_OutputParam_fk','Node');
 		$this->dropForeignKey('Param_Term_fk','Param');
 		$this->dropForeignKey('Param_Node_fk','Param');
 
