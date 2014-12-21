@@ -258,6 +258,7 @@
 	$('.inputParamSelect').live('change',function(e){
 		if(parseInt($(this).val()) > 0) {
 			$(this).parent().find('.row').children('input,select,button,textarea').attr('disabled','disabled');
+			$(this).parent().find('.row').children('input[type="checkbox"]').removeAttr('disabled');
 		} else {
 			$(this).parent().find('.row').children('input,select,button,textarea').removeAttr('disabled');
 		}

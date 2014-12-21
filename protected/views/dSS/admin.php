@@ -30,7 +30,7 @@ $this->breadcrumbs=array(
 				'clone' => array(
 						'label' => 'Clone',
 						'imageUrl' => '',
-						'url' => '"/dSS/create?dssId=".$data->dssId',
+						'url' => '"/dSS/clone/".$data->dssId',
 						'options' => array(),
 						// 'click' => '',
 					),

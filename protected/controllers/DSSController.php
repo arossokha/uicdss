@@ -31,7 +31,7 @@ class DSSController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','clone'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -57,6 +57,76 @@ class DSSController extends Controller
 
 	/**
 	 * Creates a new model.
+	 * If creation is successful, the browser will be redirected to the 'view' page.
+	 */
+	public function actionClone($id)
+	{
+		$id = (int) $id;
+		$model=$this->loadModel($id);
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['DSS']))
+		{
+			$model->primaryKey = null;
+			$model->setIsNewRecord(true);
+			$model->attributes=$_POST['DSS'];
+			$transaction=Yii::app()->db->beginTransaction();
+            try
+            {
+                if ($model->save()) {
+                    $nodes = Node::model()->findAllByAttributes(
+                    	array('dssId' => $id), array('with' => array('params', 'outputParam')));
+                    foreach($nodes as $node)
+                    {
+                        $params = $node->params();
+                        $outputParam = $node->outputParam();
+                        $node->primaryKey = null;
+                        $node->setIsNewRecord(true);
+                        $node->dssId = $model->primaryKey;
+                        if ($node->save(true)) {
+                            foreach($params as $param)
+                            {
+                                $param->primaryKey = null;
+                                $param->setIsNewRecord(true);
+                                $param->nodeId = $node->primaryKey;
+                                if (!$param->save(false)) {
+                                    throw new CDbException("Param not created");
+                                }
+                            }
+                            $outputParam->primaryKey = null;
+                            $outputParam->setIsNewRecord(true);
+                            $outputParam->nodeId = $node->primaryKey;
+                            if (!$param->save(false)) {
+                                throw new CDbException("Output Param not created");
+                            }
+                        } else {
+                            throw new CDbException("Node not created");
+                        }
+                    }
+                    $transaction->commit();
+                    $this->redirect(array('index'));
+                    // $this->redirect(array('update', 'id' => $model->dssId));
+                }
+                $transaction->rollback();
+            }
+            catch (Exception $e)
+            {
+            	var_dump($e);
+            	die();
+                $transaction->rollback();
+            }
+        } else {
+			$model->name .= ' (clone)';
+		}
+
+		$this->render('clone',array(
+			'model'=>$model,
+		));
+	}
+
+	/**
+	 * Clone a old model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
 	public function actionCreate()
