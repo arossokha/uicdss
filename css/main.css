@@ -237,3 +237,18 @@ div.search-form
     font-size: 16px;
     font-weight: bold;
 }
+
+.nodeBlock {
+	border-bottom: 3px solid black;
+	border-right: 1px solid gray;
+	border-left: 1px solid gray;
+	border-top: 1px solid gray;
+	margin: 3px;
+	padding: 5px;
+	display: inline-block;
+	float: left;
+}
+.nodeParamBlock {
+	width: 150px;
+	padding: 5px;
+}

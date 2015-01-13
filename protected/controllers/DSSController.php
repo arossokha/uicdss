@@ -27,7 +27,7 @@ class DSSController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','client'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -239,6 +239,34 @@ class DSSController extends Controller
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
+		}
+	}
+
+	public function actionClient($dssId = null) {
+
+		if($dssId > 0) {
+			$outputParamIds = array_map(function($param) {
+				return $param->primaryKey;
+			},Param::model()->findAllBySql('
+						Select Param.* from Param 
+						INNER JOIN Node ON outputParamId = paramId
+						WHERE Node.dssId = :dssId
+						LIMIT 1000
+					',array(
+						':dssId' => $dssId
+						)));
+			$dss = $this->loadModel($dssId);
+			$this->render('clientDss',array('dss' => $dss,'outputParamIds' => $outputParamIds ));
+		} else {
+			$model=new DSS('search');
+			$model->unsetAttributes();  // clear any default values
+			if(isset($_GET['DSS'])){
+				$model->attributes=$_GET['DSS'];
+			}
+
+			$this->render('clientDssList',array(
+				'model'=>$model,
+			));
 		}
 	}
 }

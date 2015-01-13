@@ -20,6 +20,8 @@
  */
 class Param extends ActiveRecord
 {
+	const TYPE_OUTPUT = 'output';
+	const TYPE_INPUT = 'input';
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.

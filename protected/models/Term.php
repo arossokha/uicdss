@@ -104,4 +104,9 @@ class Term extends ActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function getNamesArray()
+	{
+		return explode('/',$this->names);
+	}
 }

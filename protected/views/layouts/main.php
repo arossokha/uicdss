@@ -29,6 +29,8 @@
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
+				// array('label'=>'Client', 'url'=>array('/dSS/client'), 'visible'=>!Yii::app()->user->isGuest),
+				array('label'=>'Client', 'url'=>array('/dSS/client')),
 				array('label'=>'DSS', 'url'=>array('/dSS'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Contact', 'url'=>array('/site/contact')),

@@ -46,6 +46,7 @@ class Node extends ActiveRecord
 			array('dssId, outputParamId, name', 'required'),
 			array('dssId, outputParamId', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>250),
+			array('rulesTable', 'safe'),
 			array('description', 'length', 'max'=>1000),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -118,5 +119,14 @@ class Node extends ActiveRecord
 		},$this->params);
 		
 		return $ids;
+	}
+
+	public function loadRulesTable() {
+		if(strlen($this->rulesTable) > 10) {
+			$data = @unserialize($this->rulesTable);
+			return is_array($data) ? $data : array();
+		}
+
+		return array();
 	}
 }

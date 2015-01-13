@@ -27,7 +27,7 @@ class NodeController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('view','create','update','delete'),
+				'actions'=>array('view','create','update','delete','rules'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -102,6 +102,8 @@ class NodeController extends Controller
 					Yii::app()->db->createCommand("
 					Update Param set nodeId = {$model->nodeId}
 					WHERE paramId IN ({$paramIdsList}) ")->execute();
+					$model->rulesTable = '';
+					$model->save(false);
 					$this->redirect('/dSS/update/'.$model->dssId);
 				}
 			} else {
@@ -150,6 +152,105 @@ class NodeController extends Controller
 		));
 	}
 
+	public function actionRules($nodeId) {
+		$rules = array();
+
+		$node = $this->loadModel($nodeId);
+		$rulesTable = $node->loadRulesTable();
+
+		$params = $node->params;
+
+		$paramArray = array_map(function($param){
+			return array(
+					'paramId' => $param->paramId,
+					'name' => $param->name,
+					'terms' => $param->term->getNamesArray(),
+					'termId' => $param->termId,
+					'termCount' => $param->term->termCount,
+					'min' => $param->min,
+					'max' => $param->max,
+				);
+		},$params);
+
+		foreach ($paramArray as $param) {
+			if(empty($rules)) {
+				foreach ($param['terms'] as $k => $term) {
+					$rules[] = array(
+						$param['name'] => array(
+								'paramId' => $param['paramId'],
+								'name' => $param['name'],
+								'term' => $term,
+								'terms' => $param['terms'],
+								'termId' => $param['termId'],
+								'termCount' => $param['termCount'],
+								'min' => $param['min'],
+								'max' => $param['max'],
+								'type' => Param::TYPE_INPUT,
+							)
+						);
+				}
+			} else {
+				$c = count($rules);
+				$rules = Util::duplicateArray($rules,count($param['terms']));
+				$start = 0;
+				foreach ($param['terms'] as $k => $term) {
+					for($i = 0; $i < $c ; $i++) {
+						$rules[$i+$start][$param['name']] = array(
+								'paramId' => $param['paramId'],
+								'name' => $param['name'],
+								'term' => $term,
+								'terms' => $param['terms'],
+								'termId' => $param['termId'],
+								'termCount' => $param['termCount'],
+								'min' => $param['min'],
+								'max' => $param['max'],
+								'type' => Param::TYPE_INPUT,
+							);
+					}
+					$start += $c;
+				}
+			}
+		}
+
+		if($node->outputParam) {
+			$param = $node->outputParam;
+			$termNames = $param->term->getNamesArray();
+			$row = array(
+				'paramId' => $param->paramId,
+				'name' => $param->name,
+				'terms' => $termNames,
+				'term' => null,
+				'termId' => $param->termId,
+				'termCount' => $param->term->termCount,
+				'min' => $param->min,
+				'max' => $param->max,
+				'type' => Param::TYPE_OUTPUT,
+			);
+			$c = count($rules);
+			for($i = 0; $i < $c ; $i++) {
+				if(isset($_POST['rows'][$i][$param->name]) && in_array($_POST['rows'][$i][$param->name], $termNames)) {
+					$row['term'] = $_POST['rows'][$i][$param->name];
+				} elseif(!empty($rulesTable)) {
+					$row['term'] = $rulesTable[$i][$param->name]['term'];
+				}
+				$rules[$i][$param->name] = $row;
+			}
+		}
+
+		if(!empty($_POST['rows']) && is_array($_POST['rows'])) {
+			$node->rulesTable = serialize($rules);
+			if(!$node->save()){
+				throw new CHttpException(500,"Rules table for Node not saved!");
+			} else {
+				$this->redirect('/dSS/update/'.$node->dssId);
+			}
+		}
+
+		$this->render('rules',array(
+				'rules' => $rules
+			));
+	}
+
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
@@ -178,8 +279,9 @@ class NodeController extends Controller
 	public function loadModel($id)
 	{
 		$model=Node::model()->findByPk($id);
-		if($model===null)
+		if($model===null) {
 			throw new CHttpException(404,'The requested page does not exist.');
+		}
 		return $model;
 	}
 

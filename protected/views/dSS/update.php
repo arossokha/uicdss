@@ -29,18 +29,18 @@ $this->breadcrumbs=array(
         'outputParam.name',
         array(
             'class'=>'CButtonColumn',
-            'template' => '{update} {delete}',
+            'template' => '{table} {update} {delete}',
             'updateButtonUrl' => '"/node/update/".$data->nodeId',
             'deleteButtonUrl' => '"/node/delete/".$data->nodeId',
-            // 'buttons' => array(
-            //     'clone' => array(
-            //             'label' => 'Clone',
-            //             'imageUrl' => '',
-            //             'url' => '"/dSS/create?dssId=".$data->dssId',
-            //             'options' => array(),
-            //             // 'click' => '',
-            //         ),
-            // ),
+            'buttons' => array(
+                'table' => array(
+                        'label' => 'Rules table',
+                        'imageUrl' => '',
+                        'url' => '"/node/rules?nodeId=".$data->nodeId',
+                        'options' => array(),
+                        // 'click' => '',
+                    ),
+            ),
         ),
     ),
 )); ?>
