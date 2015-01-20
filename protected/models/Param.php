@@ -114,4 +114,76 @@ class Param extends ActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function fasification($paramValue)
+	{
+		$termNames = $this->term->getNamesArray();
+		$termsCount = $this->term->termCount;
+		$min = floatval($this->min);
+		$max = floatval($this->max);
+
+		$step = ($max-$min) / ($termsCount - 1) ;
+
+		$termTable = array();
+		$termValue = $min;
+		foreach ($termNames as $termNum => $termName) {
+			$value = 0;
+
+			if($termValue == $min) {
+				$b = 1;
+				$a = -($b/($termValue+$step));
+				$value = $a*$paramValue+$b;
+
+				// DEBUG
+				// if($termsCount > 3) {
+				// 	var_dump(get_defined_vars());
+				// }
+			} elseif($termValue == $max) {
+				$b = -1*($termNum-1);
+				$a = (-1*$b)/($termValue-$step);
+				$value = $a*$paramValue+$b;
+
+				// DEBUG
+				// if($termsCount > 3) {
+				// 	var_dump("DEBUG",get_defined_vars());
+				// }
+			} else {
+				$b = -1*($termNum-1);
+				if(1 == $termNum) {
+					$a = 1/$termValue;
+				} else {
+					$a = 1/($termValue-$step);
+				}
+				$y1 = $a*$paramValue+$b;
+
+
+				$b = $termNum+1;
+				$a = -($b/($termValue+$step));
+				$y2 = $a*$paramValue+$b;
+
+				if($y1 < 0 || $y1 > 1) {
+					$y1 = 0;
+				}
+				if($y2 < 0 || $y2 > 1) {
+					$y2 = 0;
+				}
+
+				$value = max($y1,$y2);
+			}
+
+			if($value < 0 || $value > 1) {
+				$value = 0;
+			}
+
+			$termTable[$termNum] = array(
+					'termId' => $this->termId,
+					'termName' => $termName,
+					'termValue' => $termValue,
+					'value' => $value,
+				);
+
+			$termValue += $step;
+		}
+		return $termTable;
+	}
 }

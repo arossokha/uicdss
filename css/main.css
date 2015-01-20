@@ -252,3 +252,6 @@ div.search-form
 	width: 150px;
 	padding: 5px;
 }
+.nodeList {
+	clear: both;
+}

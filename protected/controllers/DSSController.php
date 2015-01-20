@@ -245,6 +245,31 @@ class DSSController extends Controller
 	public function actionClient($dssId = null) {
 
 		if($dssId > 0) {
+			$results = array();
+			if(isset($_POST['nodeId']) && is_array($_POST['nodeId']) && count($_POST['nodeId'])) {
+				// $nodes = Node::model()->findAllByPk($_POST['nodeId']);
+				$nodeIds = $_POST['nodeId'];
+				foreach ($nodeIds as $nodeNum => $nodeId) {
+					$paramIdList = array_map(function($item) {
+						return array_map('intval',$item);
+					},$_POST['paramId']);
+
+					$params = Param::model()->findAllByPk($paramIdList[$nodeNum]);
+
+					foreach ($params as $paramNum => $param) {
+						$currentParamValue = $_POST['paramValue'][$nodeNum][$paramNum];
+						var_dump($currentParamValue);
+						var_dump($param->fasification($currentParamValue));
+						// var_dump($param);
+						// die();
+					}
+
+				}
+
+				// var_dump($_POST);
+				// die();
+			}
+
 			$outputParamIds = array_map(function($param) {
 				return $param->primaryKey;
 			},Param::model()->findAllBySql('
@@ -256,7 +281,7 @@ class DSSController extends Controller
 						':dssId' => $dssId
 						)));
 			$dss = $this->loadModel($dssId);
-			$this->render('clientDss',array('dss' => $dss,'outputParamIds' => $outputParamIds ));
+			$this->render('clientDss',array('dss' => $dss,'outputParamIds' => $outputParamIds , 'results' => $results));
 		} else {
 			$model=new DSS('search');
 			$model->unsetAttributes();  // clear any default values
