@@ -8,6 +8,7 @@
  * @property integer $dssId
  * @property string $name
  * @property string $description
+ * @property string $rulesTable
  * @property integer $outputParamId
  *
  * The followings are the available model relations:
@@ -121,6 +122,10 @@ class Node extends ActiveRecord
 		return $ids;
 	}
 
+	public function hasRulesTable() {
+		return !empty($this->rulesTable) && strlen($this->rulesTable) > 10;
+	}
+
 	public function loadRulesTable() {
 		if(strlen($this->rulesTable) > 10) {
 			$data = @unserialize($this->rulesTable);
@@ -129,4 +134,82 @@ class Node extends ActiveRecord
 
 		return array();
 	}
+
+	public  function aggregation($fasification)
+	{
+		$rulesTable = $this->loadRulesTable();
+		/**
+		 * seach for terms in param wiht zero value
+		 */
+		$fasDisableList = array();
+		$fasificationCalcData = array();
+		foreach ($fasification as $fasRow) {
+			foreach ($fasRow as $fasItem) {
+				$fasificationCalcData[$fasItem['paramName']][$fasItem['term']] = $fasItem['value'];
+				if(!$fasItem['value']) {
+					$fasDisableList[$fasItem['paramName']] = $fasItem;
+				}
+			}
+		}
+
+		$aggregationTable = array_filter($rulesTable,function($item) use ($fasDisableList) {
+			foreach ($item as $paramName => $row) {
+				if($fasDisableList[$paramName]['term'] == $row['term']) {
+					return false;
+				}
+			}
+			return true;
+		});
+
+		array_walk($aggregationTable, function (&$item,$key,$fasificationCalcData) {
+			$outputParamKey = false;
+			$values = array();
+			foreach ($item as $paramName => $param) {
+				if(Param::TYPE_OUTPUT == $param['type']) {
+					$outputParamKey = $paramName;
+					continue;
+				}
+				$item[$paramName]['value'] = $fasificationCalcData[$paramName][$param['term']];
+				$values[] = $item[$paramName]['value'];
+			}
+			$item[$outputParamKey]['value'] = min($values);
+			// $item['__data'] = $fasificationCalcData;
+		},$fasificationCalcData);
+
+		return $aggregationTable;
+	}
+
+	public function activization($aggregation)
+	{
+		$keys = array_keys($aggregation);
+		$firstKey = $keys[0];
+		$c = count($aggregation[$firstKey]);
+		$keys = array_keys($aggregation[$firstKey]);
+		$paramName = $keys[$c-1];
+		$min = $aggregation[$firstKey][$paramName]['min'];
+		$max = $aggregation[$firstKey][$paramName]['max'];
+
+		$terms = $aggregation[$firstKey][$paramName]['terms'];
+		$activizationArray = array_flip($terms);
+
+		foreach ($activizationArray as $term => $row) {
+			$activizationArray[$term] = array(
+				'term' => $term,
+				'min' => $min,
+				'max' => $max,
+				'value' => .0,
+			);
+		}
+
+		foreach ($aggregation as $key => $row) {
+			if($activizationArray[$row[$paramName]['term']]['value'] < $row[$paramName]['value']) {
+				$activizationArray[$row[$paramName]['term']]['value'] = $row[$paramName]['value'];
+			}
+		}
+
+		return $activizationArray;
+	}
+
+
+
 }

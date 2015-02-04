@@ -41,7 +41,18 @@
 <?php
 
 if($results) {
+    var_dump($skipedNodes);
+    foreach ($skipedNodes as $nodeId => $nodeData) {
+        foreach ($nodeData['errors'] as $fieldName => $errors) {
+            if('rulesTable' == $fieldName) {
+                echo CHtml::link("Set rules table for node: <b>{$nodeData[name]}</b>",array('/node/rules','nodeId' => $nodeId)).'<br />';
+            } else {
+                echo 'Unknown errors '.implode(';',$errors).'<br />';
+            }
+        }
+    }
 
+    CVarDumper::dump($results,5,true);
 }
 
 ?>

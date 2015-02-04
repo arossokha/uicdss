@@ -133,20 +133,15 @@ class Param extends ActiveRecord
 				$b = 1;
 				$a = -($b/($termValue+$step));
 				$value = $a*$paramValue+$b;
-
-				// DEBUG
-				// if($termsCount > 3) {
-				// 	var_dump(get_defined_vars());
-				// }
+				$start = $termValue;
+				$end = $termValue+$step;
 			} elseif($termValue == $max) {
 				$b = -1*($termNum-1);
 				$a = (-1*$b)/($termValue-$step);
 				$value = $a*$paramValue+$b;
 
-				// DEBUG
-				// if($termsCount > 3) {
-				// 	var_dump("DEBUG",get_defined_vars());
-				// }
+				$start = $termValue-$step;
+				$end = $termValue;
 			} else {
 				$b = -1*($termNum-1);
 				if(1 == $termNum) {
@@ -155,7 +150,6 @@ class Param extends ActiveRecord
 					$a = 1/($termValue-$step);
 				}
 				$y1 = $a*$paramValue+$b;
-
 
 				$b = $termNum+1;
 				$a = -($b/($termValue+$step));
@@ -169,6 +163,8 @@ class Param extends ActiveRecord
 				}
 
 				$value = max($y1,$y2);
+				$start = $termValue-$step;
+				$end = $termValue+$step;
 			}
 
 			if($value < 0 || $value > 1) {
@@ -177,9 +173,13 @@ class Param extends ActiveRecord
 
 			$termTable[$termNum] = array(
 					'termId' => $this->termId,
-					'termName' => $termName,
+					'term' => $termName,
 					'termValue' => $termValue,
 					'value' => $value,
+					'start' => $start,
+					'end' => $end,
+					'paramId' => $this->primaryKey,
+					'paramName' => $this->name,
 				);
 
 			$termValue += $step;
