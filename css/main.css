@@ -255,3 +255,40 @@ div.search-form
 .nodeList {
 	clear: both;
 }
+
+a[type="submit"] {
+	color: rgba(255,255,255,1);
+	text-decoration: none;
+	background-color: #82B9D7;
+
+	font-size: 1em;
+	display: block;
+	padding: 4px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: 0px 5px 0px rgba(88,159,200,1), 0px 9px 25px rgba(0,0,0,.7);
+	-moz-box-shadow: 0px 5px 0px rgba(88,159,200,1), 0px 9px 25px rgba(0,0,0,.7);
+	box-shadow: 0px 5px 0px rgba(88,159,200,1), 0px 9px 25px rgba(0,0,0,.7);
+	margin: 0 auto;
+	width: 100px;
+	text-align: center;
+}
+
+a#yt1 {
+	background-color: rgba(219,87,5,1);
+	-webkit-box-shadow: 0px 7px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+	-moz-box-shadow: 0px 7px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+	box-shadow: 0px 7px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
+	float: right;
+}
+
+div.dss {
+	width:50%;
+	float:left;
+}
+
+div#node-grid{
+	width:50%;
+	float:right;
+}
