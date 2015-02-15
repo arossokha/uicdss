@@ -35,7 +35,7 @@ $this->breadcrumbs=array(
             'buttons' => array(
                 'table' => array(
                         'label' => 'Rules table',
-                        'imageUrl' => '',
+                        'imageUrl' => '/images/rulesTable.png',
                         'url' => '"/node/rules?nodeId=".$data->nodeId',
                         'options' => array(),
                         // 'click' => '',

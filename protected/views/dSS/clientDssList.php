@@ -1,10 +1,10 @@
 <?php
 $this->breadcrumbs=array(
-	'Список СППР',
+	'Бібліотека моделей СППР',
 );
 ?>
 
-<h1>Список СППР</h1>
+<h1>Бібліотека моделей СППР</h1>
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'dss-grid',
 	'dataProvider'=>$model->search(),

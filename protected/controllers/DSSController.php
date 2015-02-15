@@ -273,6 +273,7 @@ class DSSController extends Controller
 						continue;
 					}
 					$aggregation = $node->aggregation($fasification);
+					$activization = $node->activization($aggregation);
 
 					$results[$node->primaryKey]['node'] = array(
 							'nodeId' => $node->primaryKey,
@@ -284,7 +285,15 @@ class DSSController extends Controller
 					$results[$node->primaryKey]['params'] = $paramsArray;
 					$results[$node->primaryKey]['fasification'] = $fasification;
 					$results[$node->primaryKey]['aggregation'] = $aggregation;
-					$results[$node->primaryKey]['activization'] = $node->activization($aggregation);
+					$results[$node->primaryKey]['activization'] = $activization;
+
+					/**
+					 * Calculate center
+					 */
+
+					$node->defasification($activization);
+					CVarDumper::dump($results,5,true);
+					die();
 				}
 			}
 

@@ -145,7 +145,11 @@ class Node extends ActiveRecord
 		$fasificationCalcData = array();
 		foreach ($fasification as $fasRow) {
 			foreach ($fasRow as $fasItem) {
-				$fasificationCalcData[$fasItem['paramName']][$fasItem['term']] = $fasItem['value'];
+				$fasificationCalcData[$fasItem['paramName']][$fasItem['term']] = array(
+					'value' => $fasItem['value'],
+					'start' => $fasItem['start'],
+					'end' => $fasItem['end'],
+					);
 				if(!$fasItem['value']) {
 					$fasDisableList[$fasItem['paramName']] = $fasItem;
 				}
@@ -169,7 +173,9 @@ class Node extends ActiveRecord
 					$outputParamKey = $paramName;
 					continue;
 				}
-				$item[$paramName]['value'] = $fasificationCalcData[$paramName][$param['term']];
+				$item[$paramName]['value'] = $fasificationCalcData[$paramName][$param['term']]['value'];
+				$item[$paramName]['start'] = $fasificationCalcData[$paramName][$param['term']]['start'];
+				$item[$paramName]['end'] = $fasificationCalcData[$paramName][$param['term']]['end'];
 				$values[] = $item[$paramName]['value'];
 			}
 			$item[$outputParamKey]['value'] = min($values);
@@ -192,15 +198,33 @@ class Node extends ActiveRecord
 		$terms = $aggregation[$firstKey][$paramName]['terms'];
 		$activizationArray = array_flip($terms);
 
+
+		$termCount = count($terms);
+		$step = ($max - $min) / ($termCount-1);
+		$termValue = floatval($min);
 		foreach ($activizationArray as $term => $row) {
+			if($termValue == $min) {
+				$start = $termValue;
+				$end = $termValue+$step;
+			} elseif($termValue == $max) {
+				$start = $termValue-$step;
+				$end = $termValue;
+			} else {
+				$start = $termValue-$step;
+				$end = $termValue+$step;
+			}
+			$termValue += $step;
+
 			$activizationArray[$term] = array(
 				'term' => $term,
 				'min' => $min,
 				'max' => $max,
+				'start' => $start,
+				'end' => $end,
+				'step' => $step,
 				'value' => .0,
 			);
 		}
-
 		foreach ($aggregation as $key => $row) {
 			if($activizationArray[$row[$paramName]['term']]['value'] < $row[$paramName]['value']) {
 				$activizationArray[$row[$paramName]['term']]['value'] = $row[$paramName]['value'];
@@ -210,6 +234,59 @@ class Node extends ActiveRecord
 		return $activizationArray;
 	}
 
+	public function defasification($activization)
+	{
+		// find point coordinates for polygon
+		$num = 0;
+		$count = count($activization)-1;
+		$poligonList = array();
+		foreach ($activization as $key => $row) {
+			$a = array($row['start'],0);
+			$d = array($row['end'],0);
 
+			if(0 == $num) {
+				$b = array($row['start'],$row['value']);
+				$x = ($num+1-$row['value'])*$row['step'];
+				$c = array($x,$row['value']);
+			} elseif($count == $num) {
+				$x = ($row['value']+$num-1)*$row['step'];
+				$b = array($x,$row['value']);
+				$c = array($row['end'],$row['value']);
+			} else {
+				$x = ($row['value']+$num-1)*$row['step'];
+				$b = array($x,$row['value']);
+				$x = ($num+1-$row['value'])*$row['step'];
+				$c = array($x,$row['value']);
+			}
+			$poligonList[] = array(
+					'a' => $a,
+					'b' => $b,
+					'c' => $c,
+					'd' => $d,
+				);
+			$num++;
+		}
+
+		$xList = '';
+		$yList = '';
+		foreach ($poligonList as $poligon) {
+			var_dump($poligon);
+			$pointXList = array_map(function($item) {
+				return $item[0];
+			},$poligon);
+			$pointYList = array_map(function($item) {
+				return $item[1];
+			},$poligon);
+			$xList .= implode(';',$pointXList).';';
+			$yList .= implode(';',$pointYList).';';
+		}
+
+		var_dump($xList, $yList);
+		die();
+
+			CVarDumper::dump($poligonList,5,true);
+			die();
+			return $defasification;
+	}
 
 }

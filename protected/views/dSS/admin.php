@@ -5,7 +5,7 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1>Список СППР</h1>
+<h1>Бібліотека моделей СППР</h1>
 <?php echo CHtml::link('Створення СППР','/dSS/create',array('class'=>'create-button')); ?>
 <div class="search-form" >
 <?php $this->renderPartial('_search',array(
@@ -29,7 +29,7 @@ $this->breadcrumbs=array(
 			'buttons' => array(
 				'clone' => array(
 						'label' => 'Clone',
-						'imageUrl' => '',
+						'imageUrl' => '/images/cloneDss.png',
 						'url' => '"/dSS/clone/".$data->dssId',
 						'options' => array(),
 						// 'click' => '',
